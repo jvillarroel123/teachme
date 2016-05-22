@@ -10,7 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use TeachMe\Entities\User;
 
 Route::get('/', function () {
+	dd(User::all()->random()->id);
     return view('welcome');
 });

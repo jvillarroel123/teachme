@@ -1,11 +1,14 @@
 <?php
 
 use TeachMe\Entities\Ticket;
+use TeachMe\Entities\User;
 use Faker\Generator;
 use Faker\Factory as Faker;
 
 class TicketTableSeeder extends BaseSeeder
 {
+    protected $total = 250;
+    
     public function getModel()
     {
         return new Ticket();
@@ -16,13 +19,9 @@ class TicketTableSeeder extends BaseSeeder
         return [
             'title'		=> $faker->sentence(),
             'status'	=> $faker->randomElement(['open','open','closed']),
-            'user_id'	=> 1
+            //'user_id'	=> $this->getRandom('User')->id
+            'user_id'	=> User::all()->random()->id
         ];
     }
 
-    public function run()
-    {
-        //
-        $this->createMultiple(50);
-    }
 }
